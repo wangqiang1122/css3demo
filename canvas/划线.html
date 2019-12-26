@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: black;
+        }
+        div{
+            background: #fff;
+            margin: 0 auto;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <canvas width="800" height="600">
+
+    </canvas>
+</div>
+</body>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementsByTagName('canvas')[0];
+        console.log(canvas);
+        var context = canvas.getContext('2d');
+        context.lineWidth = 5;
+        context.beginPath()
+        context.moveTo(100,100);
+        context.lineTo(200,200);
+        context.strokeStyle = 'red';
+        context.stroke();
+        context.lineWidth = 1;
+        context.beginPath()
+        context.moveTo(200,100);
+        context.lineTo(300,200);
+        context.strokeStyle = 'yellow';
+        context.stroke();
+    }
+</script>
+</html>

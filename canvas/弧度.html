@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: black;
+        }
+        div{
+            background: #fff;
+            margin: 0 auto;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <canvas width="800" height="600">
+
+    </canvas>
+</div>
+
+
+</body>
+<script>
+    /**
+     *  正玄定理 sinA = 对边比斜边
+     *  余弦定理 cosA = 邻边比斜边
+     *
+     *  对于数学来说 0度在整上方  对于canvas的arc来说0度在右侧
+     *  我们默认是用几何方式计算的角度
+     *  在画弧度的时候需要自己计算一下 在几何计算的角度上需要减90来转换成arc的角度
+     */
+
+
+    window.onload = function () {
+
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var ctx = canvas.getContext('2d');
+        // 圆心位置 及半径长度
+
+        var cx = 400,cy=300, r=150;
+        // 角度转弧度
+        function d2a(jiao) {
+            return jiao*Math.PI/180;
+        }
+        // 弧度转角度
+        function a2d(hu) {
+            return hu*180/Math.PI
+        }
+        console.log(a2d(180));
+        var startang = -150;
+        var endang = 150;
+
+
+        var xy1 = {x: cx+Math.sin(d2a(startang))*r,y: cy-Math.cos(d2a(startang))*r };
+        var xy2 = {x: cx+Math.sin(d2a(endang))*r,y: cy-Math.cos(d2a(endang))*r};
+        ctx.beginPath();
+        // ctx.strokeStyle = 'transparent'
+        // 线1
+        ctx.moveTo(cx,cy);
+        // ctx.lineTo(xy1.x,xy1.y);
+        // 线2 是划弧度
+        ctx.arc(cx,cy,r,d2a(startang-90),d2a(endang-90),false)
+        // 线3
+        // ctx.closePath();
+        ctx.fill();
+
+        // 第两个圆形
+        var r2 = 140;
+        var xy1Z = {x: cx+Math.sin(d2a(startang))*r2,y: cy-Math.cos(d2a(startang))*r2 };
+        ctx.beginPath()
+        ctx.moveTo(cx,cy);
+        // ctx.lineTo(xy1Z.x,xy1Z.y);
+        ctx.arc(cx,cy,r2,d2a(0-90),d2a(360-90),false)
+        // 线3
+        // ctx.closePath();
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+    }
+</script>
+</html>

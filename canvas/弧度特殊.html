@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: black;
+        }
+        div{
+            background: #fff;
+            margin: 0 auto;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <canvas width="800" height="600">
+
+    </canvas>
+</div>
+
+
+</body>
+<script>
+    /**
+     *  正玄定理 sinA = 对边比斜边
+     *  余弦定理 cosA = 邻边比斜边
+     *
+     *  对于数学来说 0度在整上方  对于canvas的arc来说0度在右侧
+     *
+     */
+
+
+    window.onload = function () {
+
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var ctx = canvas.getContext('2d');
+        // 圆心位置 及半径长度
+
+        var cx = 400,cy=300, r=150;
+        // 角度转弧度
+        function d2a(jiao) {
+            return jiao*Math.PI/180;
+        }
+        // 弧度转角度
+        function a2d(hu) {
+            return hu*180/Math.PI
+        }
+
+        // ctx.moveTo(cx,cy)
+        ctx.arc(cx,cy,r,d2a(0),d2a(90),false);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.fillStyle = 'red';
+        ctx.fill();
+    }
+</script>
+</html>
