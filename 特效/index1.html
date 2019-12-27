@@ -3,38 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        body {
-            background: black;
+    <style media="screen" >
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        div{
-            background: #fff;
-            margin: 0 auto;
-            width: 800px;
-        }
+      div{
+          width: 200px;
+          height: 200px;
+          position: absolute;
+      }
     </style>
 </head>
 <body>
-<div>
-    <canvas width="800" height="600">
-
-    </canvas>
-</div>
+<div style="background: pink;left: 300px;top: 100px;z-index: 1"></div>
+<div style="background: black;left: 400px;top: 200px;z-index: 2"></div>
+<div style="background: blue;left: 700px;top: 50px;z-index: 3"></div>
+<div style="background: red;left: 750px;top: 150px;z-index: 4"></div>
 </body>
 <script>
-    window.onload = function () {
-        var canvas = document.getElementsByTagName('canvas')[0];
-        console.log(canvas);
-        var context = canvas.getContext('2d');
-        context.moveTo(100,100);
-        context.lineTo(200,200);
-        context.strokeStyle = 'red';
-        context.stroke();
-        context.beginPath()
-        context.moveTo(200,100);
-        context.lineTo(300,200);
-        context.strokeStyle = 'yellow';
-        context.stroke();
-    }
+ window.onload = function () {
+     let aDiv = document.getElementsByTagName('div');
+     let oldPos = Array.from(aDiv).map((div)=>{
+         return {
+             left: div.offsetLeft,
+             top: div.offsetTop,
+         }
+     })
+     // console.log(oldLeft)
+     document.onmousemove = function (ev) {
+         Array.from(aDiv).map((div,index)=>{
+             div.style.left =oldPos[index].left+(ev.clientX*div.style.zIndex/100)+'px';
+             div.style.top =oldPos[index].top+(ev.clientY*div.style.zIndex/100)+'px'
+         })
+     }
+
+ }
 </script>
 </html>
