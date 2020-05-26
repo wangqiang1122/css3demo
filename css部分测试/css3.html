@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+            background-color: #eee;
+            font-size: 0;
+            width: 350px;
+            height: 100px;
+            }
+            .cell {
+            display: inline-block;
+            box-sizing: border-box;
+            vertical-align: top;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50px;
+            margin: 5px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #fff;
+            color: #333;
+            }
+            .active {
+            border: 2px solid #E20000;
+            color: #E20000;
+        }
+        /**
+           子元素用display：inline-block 会出现父级塌陷问题
+            因为vertical-align
+        
+        */
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="cell">有内容</div>
+        <div class="cell" id="spec">有内容</div>
+        <div class="cell">有内容</div>
+      </div>
+</body>
+<script>
+    window.onload = function() {
+        let spec = document.getElementById("spec");
+        let flag = false;
+        spec.addEventListener("click", () => {
+        flag = !flag;
+        if (flag) {
+            spec.classList.add('active')
+        } else {
+            spec.classList.remove('active')
+        }
+        });
+    }
+</script>
+</html>
